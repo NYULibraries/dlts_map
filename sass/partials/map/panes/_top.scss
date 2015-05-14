@@ -1,0 +1,60 @@
+#header, .footer {
+  padding: .5em 1em;
+  @include embossed-gradient($navbar-overlay, $navbar-end-background-mix, $navbar-start-background-mix);
+  h1, h2 {
+    font-size: 1.2em;
+    text-transform: uppercase;
+    @include bv-text-shadow(embossed-text-shadow);
+    letter-spacing: .05em;
+    font-weight: bold;
+  }
+}
+
+.top {
+  &.hidden {
+  display: none;
+  visibility: hidden;
+  }
+}
+
+#site-name {
+  margin: 0;
+}
+
+.titlebar {
+  margin: 0;
+  padding: 0;
+  background-image: none;
+  background-color: darken($special-titlebar-color, 15%);
+  height: auto;
+  overflow: hidden;
+  .map {
+    @include bv-font-faced($icon-font-name);
+    display: block;
+    float: left;
+    font-size: 2em;
+    color: $titlebar-color;
+    width: 40px;
+    height: 36px;
+    opacity: $active-opacity;
+    &:before {
+      margin: .2em;
+      line-height: 1.33em;
+      font-style: normal;
+      font-weight: normal;
+      speak: none;
+      -webkit-font-smoothing: antialiased;
+      content: "\e00f";
+    }
+  }
+  #page-title {
+    @include bv-text-shadow(embossed-text-shadow-dark-background);
+    letter-spacing: .05em;
+    color: $titlebar-color;
+    line-height: 1.8em;
+    font-size: 1.6em;
+    margin-left: 12px;
+    margin-left: .6rem;
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,9 @@
+.pane.navbar#navbar {
+    display: block;
+    width: 100%;
+    height: 55px;
+    @include embossed-gradient($navbar-overlay, $navbar-start-background-mix, $navbar-end-background-mix);
+    overflow: hidden;
+    padding-top: 6px;
+}
+

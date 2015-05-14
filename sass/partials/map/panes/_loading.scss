@@ -1,0 +1,56 @@
+.pane.load {
+   position: fixed; 
+   text-align: center;
+   top: 50%;
+   left: 50%;
+   height: $loading-segments-height + 20px;
+   width:$loading-segments-total-width;
+   p {
+     color: $loading-animation-start-color;
+     @include bv-text-shadow(icon-embossed-text-shadow);
+   }
+}
+
+.pane {
+  &.display.loading {
+    .dlts_image_map {
+      display: none;
+      visibility: hidden;
+    }      
+  }
+}
+
+// Animation originally generated at http://cssload.net/en/
+// Sassified by DLTS 
+// Relies on libraries/compass-animate/_animations & libraries/compass-animate/_keyframes from https://github.com/ZeeAgency/compass-animation
+
+// Creates the animation ID ($loading-name in variables) 
+##{$loading-name} {
+  position: relative;
+  width: $loading-segments-total-width;
+  height: $loading-segments-height;
+}
+
+// Create the animation class
+.#{$loading-name} {
+  position: absolute;
+  top: 0;
+  background-color: $loading-animation-start-color;
+  width: $loading-segments-width;
+  height: $loading-segments-height;
+  @include border-radius($loading-segments-border-radius);
+  @include animation($loading-animation-name $loading-animation-duration $loading-animation-direction $loading-animation-iteration-count);
+}
+
+// Generates the animation individual classes using bv-animation-loop @mixin
+@include bv-animation-loop($loading-name, $loading-segments-width-padding, $loading-segments-total, $loading-animation-duration, $loading-animation-start-offset );
+
+// Generates the keyframes
+@include keyframes($loading-animation-name) {
+  0% {
+    background-color: $loading-animation-start-color;
+  }
+  100% {
+    background-color: $loading-animation-end-color;
+  }
+}

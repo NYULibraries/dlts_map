@@ -1,0 +1,85 @@
+// Pager Contols
+#book-navbar {
+  .item-list {
+    display:block;
+    height:100%;
+    text-align:center;
+    .pager li {
+      padding:0;
+      margin:0;
+    }
+  }
+}
+
+.pager {
+  background: $dark-background;
+  display: inline;
+  li {
+    display: inline;
+    float: left;
+    font-family: $pager-fonts;
+    width: 100% / ($navbar-columns + 2);
+    min-width: 48px;
+    opacity: $normal-opacity;
+    &.pager-current,
+    &.pager-ellipsis {
+      float: left;
+      display: block;
+      width: 100% / ($navbar-columns + 2);
+      min-width: 48px;
+      height: 46px; 
+      font-size: 1.4em;
+      border: none;
+      line-height: 2em;
+    }
+    a {
+      display: block;
+      text-align:center;
+      margin:0 auto;        
+      width: 44px;
+      height: 46px;
+      font-size: 1.4em;
+      line-height: 2em;
+      border: none;
+      opacity: $normal-opacity;
+      &:hover {
+        opacity: $active-opacity;
+        text-decoration:none;
+      }
+      &:before {
+        @include bv-font-faced($icon-font-name);
+        margin:0 99em 0 .2em;
+        line-height:1.4em;
+        font-size:1.6em;
+        font-style: normal;
+        font-weight: normal;
+        speak: none;
+        -webkit-font-smoothing: antialiased;
+      }
+    }
+    &.pager-previous a {
+      overflow: hidden;
+      &:before {
+        content: "\e013";
+      }
+    }
+    &.pager-next a {
+      overflow: hidden;
+      &:before {
+        content: "\e012";
+      }
+    }
+    &.pager-first a {
+      overflow: hidden;
+      &:before {
+        content: "\e010";
+      }
+    }
+    &.pager-last a {
+      overflow: hidden;
+      &:before {
+        content: "\e011";
+      }
+    }
+  }
+}

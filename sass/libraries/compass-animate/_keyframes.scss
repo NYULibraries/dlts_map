@@ -1,0 +1,69 @@
+// https://github.com/ZeeAgency/compass-animation
+@import "compass/css3/deprecated-support";
+
+// Requires SASS syntax and not SCSS in order to work (sass 3.2 ?)
+// Experimental support is scoped within keyframes so for instance -moz-keyframes won't contain -webkit- properties
+
+// Mixin to set every support to false
+@mixin reset-experimental-support {
+  $experimental-support-for-mozilla: false !global;
+  $experimental-support-for-webkit: false !global;
+  $experimental-support-for-opera: false !global;
+  $experimental-support-for-microsoft: false !global;
+  $experimental-support-for-khtml: false !global;
+}
+
+@mixin keyframes($name, $moz: $experimental-support-for-mozilla, $webkit: $experimental-support-for-webkit, $o: $experimental-support-for-opera, $ms: $experimental-support-for-microsoft, $khtml: $experimental-support-for-khtml, $official: true) {
+  // Save support
+  $original-experimental-support-for-mozilla: $experimental-support-for-mozilla  !global;
+  $original-experimental-support-for-webkit: $experimental-support-for-webkit !global;
+  $original-experimental-support-for-opera: $experimental-support-for-opera !global;
+  $original-experimental-support-for-microsoft: $experimental-support-for-microsoft !global;
+  $original-experimental-support-for-khtml: $experimental-support-for-khtml !global;
+  @if $moz {
+    @include reset-experimental-support;
+    $experimental-support-for-mozilla: true !global;
+    @-moz-keyframes #{$name} {
+      @content;
+    }
+  }
+  @if $webkit {
+    @include reset-experimental-support;
+    $experimental-support-for-webkit: true !global;
+    @-webkit-keyframes #{$name} {
+      @content;
+    }
+  }
+  @if $o {
+    @include reset-experimental-support;
+    $experimental-support-for-opera: true !global;
+    @-o-keyframes #{$name} {
+      @content;
+    }
+  }
+  @if $ms {
+    @include reset-experimental-support;
+    $experimental-support-for-microsoft: true !global;
+    @-ms-keyframes #{$name} {
+      @content;
+    }
+  }
+  @if $khtml {
+    @include reset-experimental-support;
+    $experimental-support-for-khtml: true !global;
+    @-khtml-keyframes #{$name} {
+      @content;
+    }
+  }
+  // Restore support
+  $experimental-support-for-mozilla: $original-experimental-support-for-mozilla !global;
+  $experimental-support-for-webkit: $original-experimental-support-for-webkit !global;
+  $experimental-support-for-opera: $original-experimental-support-for-opera !global;
+  $experimental-support-for-microsoft: $original-experimental-support-for-microsoft !global;
+  $experimental-support-for-khtml: $original-experimental-support-for-khtml !global;
+  @if $official {
+    @keyframes #{$name} {
+      @content;
+    }
+  }
+}
