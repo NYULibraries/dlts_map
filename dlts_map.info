@@ -2,7 +2,7 @@ name = DLTS Map
 description = DLTS map provides a base theme for all of DLTS maps.
 core = 7.x
 engine = phptemplate
-version = 2.0.1
+version = 2.0.2
 screenshot = screenshot.png
 
 stylesheets[all][] = css/dlts_map.css
