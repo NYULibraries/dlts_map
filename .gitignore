@@ -1,0 +1,15 @@
+Ignore configuration files that may contain sensitive information.
+
+.DS_Store
+.project
+.sass-cache
+css/*.css
+
+# Ignore Eclipse files
+.buildpath
+.settings/
+
+.bundle/
+.sass-cache/
+Gemfile.lock
+vendor/

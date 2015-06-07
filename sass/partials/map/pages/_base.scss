@@ -1,39 +1,40 @@
 @include bv-font-face($icon-font-name, $icon-font-woff, $icon-font-ttf, $inline-fonts, $font-weight, $font-style, $icon-font-eot);
 
-html, body, input {
-  font-family: $book-fonts;
-}
-
 html {
-  
+
+  font-family: $book-fonts;
   height: 100%;
   width: 100%;
   overflow: hidden;
   
-  &.node-type-map {
-    body,
-    .page,
-    #main-wrapper,
-    #page-wrapper,
-    #main,
-    #content,
-    #content .section,
-    #content .section .region-content, 
-    #block-system-main,
-    #block-system-main .content
-    {
-      overflow: inherit;
-      height: inherit;
-      width: inherit;
-    }
+  input {
+    font-family: inherit;
   }
-  
+
+  .page,
+  #main-wrapper,
+  #page-wrapper,
+  #main,
+  #content,
+  #content .section,
+  #content .section .region-content, 
+  #block-system-main,
+  #block-system-main .content {
+    overflow: inherit;
+    height: inherit;
+    width: inherit;
+  }
+    
   .wrapper {
     margin: 0 auto;
     padding: 0;
   }
 
   body {
+    font-family: inherit;
+    overflow: inherit;
+    height: inherit;
+    width: inherit;
     a {
       @include set-link-colors($link-color);
     }
@@ -97,7 +98,8 @@ html {
   }
 }
 
-.yui3-u-1 {
+/** we need to get rid of yui3 class */
+.yui3-u-1, .views-u-1 {
   .field-name-body {
     width:50%;
     margin:2em 1em;
@@ -106,6 +108,7 @@ html {
   }
 }
 
-.yui3-u-1.pane-page-body {
+/** we need to get rid of yui3 class */
+.yui3-u-1.pane-page-body, .views-u-1.pane-page-body {
   margin-left: 1em;
 }
