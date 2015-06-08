@@ -2,5 +2,4 @@
 source "https://rubygems.org"
 
 gem 'compass'
-gem 'compass-960-plugin'
-
+# gem 'compass-960-plugin'
