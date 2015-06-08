@@ -5,14 +5,14 @@
 @import "partials/map/defaults/_variables";
 @import "partials/map/defaults/_mixins";
 @import "partials/themeable/_variables";
-@import "partials/base/_views-grid";
 @import "partials/base/_base-typography"; 
+@import "partials/base/_base-grid"; 
 @import "partials/map/pages/_base";
+@import "partials/map/panes/_pane";
 @import "partials/map/panes/_top";
 @import "partials/map/panes/_main";
 @import "partials/map/panes/_navbar-basic";
 @import "partials/map/panes/_navbar-full";
-@import "partials/map/panes/_pane";
 @import "partials/map/panes/_pane-metadata";
 @import "partials/map/panes/_pane-display";
 @import "partials/map/panes/_pane-options";

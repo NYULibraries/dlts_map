@@ -1,114 +1,51 @@
-@include bv-font-face($icon-font-name, $icon-font-woff, $icon-font-ttf, $inline-fonts, $font-weight, $font-style, $icon-font-eot);
+@include bv-font-face(
+  $icon-font-name, 
+  $icon-font-woff, 
+  $icon-font-ttf, 
+  $inline-fonts, 
+  $font-weight, 
+  $font-style, 
+  $icon-font-eot
+);
 
 html {
-
   font-family: $book-fonts;
   height: 100%;
   width: 100%;
   overflow: hidden;
-  
-  input {
-    font-family: inherit;
-  }
-
-  .page,
-  #main-wrapper,
-  #page-wrapper,
-  #main,
-  #content,
-  #content .section,
-  #content .section .region-content, 
-  #block-system-main,
-  #block-system-main .content {
-    overflow: inherit;
-    height: inherit;
-    width: inherit;
-  }
-    
-  .wrapper {
-    margin: 0 auto;
-    padding: 0;
-  }
-
   body {
     font-family: inherit;
     overflow: inherit;
     height: inherit;
     width: inherit;
-    a {
-      @include set-link-colors($link-color);
+    .page {
+      overflow: inherit;
+      height: inherit;
+      width: inherit;
     }
-    &.page-node {
-      .content {
-        position: relative;
-        color:#000;
-        margin: 15px 10px 15px 0;
-        z-index: 1;
-      }
-      .node-page {
-        margin-left: 10px;
-      }
-    }
+    .wrapper {
+      margin: 0 auto;
+      padding: 0;
+    }    
     .footer {
       margin-left: 10px;
     }
+    .button {
+      &.link {
+        border: 1px solid #E9E9E9;
+        @include border-radius(3px);
+        @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+        @include text-shadow(1px 1px 0 #fff);
+        display: inline-block;
+        font-weight: bold;
+        padding: 4px 12px 3px;
+        text-align: center;
+        white-space: nowrap;
+        background: #EFEFEF;
+        background: -moz-linear-gradient(top,whiteSmoke 0,#EFEFEF 50%,#E5E5E5 51%,#DFDFDF 100%);
+        background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,whiteSmoke),color-stop(50%,#EFEFEF),color-stop(51%,#E5E5E5),color-stop(100%,#DFDFDF));
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='whiteSmoke',endColorstr='#DFDFDF',GradientType=0);
+      }
+    }
   }
-}
-
-/** Global elements */
-
-.element-invisible {
-  display: none;
-  visibility: hidden; 
-}
-
-.button.link {
-  border: 1px solid #E9E9E9;
-  @include border-radius(3px);
-  @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
-  @include text-shadow(1px 1px 0 #fff);
-  display: inline-block;
-  font-weight: bold;
-  padding: 4px 12px 3px;
-  text-align: center;
-  white-space: nowrap;
-  background: #EFEFEF;
-  background: -moz-linear-gradient(top,whiteSmoke 0,#EFEFEF 50%,#E5E5E5 51%,#DFDFDF 100%);
-  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,whiteSmoke),color-stop(50%,#EFEFEF),color-stop(51%,#E5E5E5),color-stop(100%,#DFDFDF));
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='whiteSmoke',endColorstr='#DFDFDF',GradientType=0);
-  &.bobcat-record,
-  &.browse-collection,
-  &.book-index {
-    min-width: 230px;
-    display: block;
-    font-size: 22px;
-    padding: 9px 0 10px;
-    background: -moz-linear-gradient(top,#F7F7F7 0,#DFDFDF 100%);
-    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#F7F7F7),color-stop(100%,#DFDFDF));
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F7F7F7',endColorstr='#DFDFDF',GradientType=0);
-  }
-}
-
-#header {
-  padding:1em 1em .5em 1em;
-  @include gradient($lib-red,$lib-brown);
-  a {
-    color:white;
-    font-size:1.2em;
-  }
-}
-
-/** we need to get rid of yui3 class */
-.yui3-u-1, .views-u-1 {
-  .field-name-body {
-    width:50%;
-    margin:2em 1em;
-    border-left:3px solid $teaser-color;
-    padding-left:1em;
-  }
-}
-
-/** we need to get rid of yui3 class */
-.yui3-u-1.pane-page-body, .views-u-1.pane-page-body {
-  margin-left: 1em;
 }

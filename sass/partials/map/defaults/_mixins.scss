@@ -9,7 +9,6 @@
   // Old IEs fallback
   background: $base-background-color;
   @include background-image( linear-gradient( rgba( blend-softlight( $base-background-color, $start-background-color ), $opac1) $pos1, rgba( $base-background-color, $opac2 ) $pos2, rgba( blend-softlight( $base-background-color, $end-background-color ), $opac3) $pos3, rgba( blend-softlight( $base-background-color, $end-background-color ), $opac4) $pos4));
-  
 }
 
 @mixin gradient($start-color, $end-color) {
@@ -67,4 +66,3 @@
     }
   }
 }
-

@@ -83,3 +83,16 @@ strong {
 i, em {
   font-style: italic;
 }
+
+input {
+  font-family: inherit;
+}
+
+a {
+  @include set-link-colors($link-color);
+}
+
+.element-invisible {
+  display: none;
+  visibility: hidden; 
+}

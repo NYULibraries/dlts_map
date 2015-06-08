@@ -1,9 +1,10 @@
-.pane.navbar#navbar {
+.pane {
+  &.navbar {
     display: block;
     width: 100%;
+    overflow: hidden;    
     height: 55px;
     @include embossed-gradient($navbar-overlay, $navbar-start-background-mix, $navbar-end-background-mix);
-    overflow: hidden;
     padding-top: 6px;
+  }
 }
-

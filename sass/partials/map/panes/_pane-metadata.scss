@@ -13,13 +13,19 @@
   overflow-y: auto;
   display: block;
   border-top: 1px solid rgba(0, 0, 0, 0.3);
-  .node-map {
+  .node {
     padding: 0;
     margin-top: .5em;
     margin-left: 12px;
     margin-left: .6rem;
     margin-right: .7em;
     margin-bottom: 2em;
+    .field-name-body {
+      width:50%;
+      margin:2em 1em;
+      border-left:3px solid $teaser-color;
+      padding-left:1em;
+    }
     .field-name-field-title {
       font-weight: bold;
       font-size: 1.3em;

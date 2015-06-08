@@ -104,7 +104,8 @@ body {
           }
         }
         span {
-          display:none;
+          display: none;
+          visibility: hidden;          
         }
       }
     }
