@@ -1,6 +1,6 @@
 // http://yuilibrary.com/yui/docs/event/synth-example.html
 // http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
-Y.use('node', 'event-synthetic', 'event-custom', function (Y) {
+YUI().use('node', 'event-synthetic', 'event-custom', function (Y) {
   
   Y.Event.define("arrow", {
     // Webkit and IE repeat keydown when you hold down arrow keys.

@@ -1,6 +1,6 @@
-Y.use(
-  'node', 'event', 'event-custom', 'transition', 'gallery-soon', 'widget-anim', 'overlay', 'io-queue',
-  function(Y) {
+YUI().use(
+  'node', 'event', 'event-custom', 'gallery-soon',
+  function ( Y ) {
   
     'use strict';
 
@@ -13,13 +13,10 @@ Y.use(
     
     var on_button_click;
     
-    /** set a X-PJAX HTTP header for all IO requests */
-    Y.io.header('X-PJAX', 'true');
-
     /** add view port information to global setting */
     var viewport = Y.DOM.viewportRegion();
 
-    resizePageMeta = function() {
+    function resizePageMeta () {
 
       /** definition list start */
       var viewportHeight = this.get('winHeight'),
@@ -40,9 +37,9 @@ Y.use(
 
       Y.one('#pagemeta').setStyles({ 'height': sidebarHeight });
 
-    };
+    }
 
-    on_button_click = function(e) {
+    function on_button_click ( e ) {
 
       e.preventDefault();
 
@@ -95,7 +92,7 @@ Y.use(
       }
 
       Y.fire(event_prefix + ':toggle', e);
-    };
+    }
 
     /** events listeners */
     Y.on('contentready', resizePageMeta, '#pagemeta');

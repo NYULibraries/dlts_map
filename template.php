@@ -13,31 +13,6 @@ function dlts_map_theme ( $existing, $type, $theme, $path ) {
   );
 }
 
-/** Not meant to be pretty. We know what we want we get it. */
-function dlts_map_js_alter(&$javascript) {
-
-  $settings = drupal_array_merge_deep_array ( $javascript['settings']['data'] ) ;
-  
-  $data = 'var Y = YUI().use(function (Y) { Y.namespace("DLTS"); Y.DLTS.settings = ' . drupal_json_encode ( $settings ) .' });' ;
-
-  // start looking for a better solution
-  if ( isset ( $settings ) ) {
-    $javascript['init'] = array (
-      'group' => JS_THEME,
-      'type' => 'inline',
-      'every_page' => '',
-      'weight' => 5,
-      'scope' => 'header',
-      'cache' => 1,
-      'defer' => FALSE,
-      'preprocess' => 1,
-      'version' => '',
-      'data' => $data,
-    ) ;
-  }
-
-}
-
 /**
  * Add non JavaScript tags to document
  * See: http://api.drupal.org/api/drupal/includes%21theme.inc/function/template_preprocess_html/7
@@ -129,7 +104,7 @@ function dlts_map_preprocess_node(&$vars) {
   );
       
   /** Add YUI Library from YUI Open CDN; should we add this as a setting in the theme form? */
-  drupal_add_js('http://yui.yahooapis.com/3.13.0/build/yui/yui-min.js', 'external', array('group' => JS_LIBRARY, 'weight' => -100 ));
+  drupal_add_js('http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js', 'external', array('group' => JS_LIBRARY, 'weight' => -100 ));
 
   drupal_add_js($theme_path . '/js/crossframe.js', array('type' => 'file', 'scope' => 'footer', 'weight' => -100));
 

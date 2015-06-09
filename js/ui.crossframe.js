@@ -1,4 +1,4 @@
-Y.use(
+YUI().use(
     'node'
   , 'event'
   , 'event-custom'
