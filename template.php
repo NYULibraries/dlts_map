@@ -1,14 +1,10 @@
 <?php
 
-function dlts_map_theme($existing, $type, $theme, $path) {
+function dlts_map_theme ( $existing, $type, $theme, $path ) {
   return array(
     'dlts_loading' => array(
       'template' => 'templates/dlts_loading',
       'variables' => array( ),
-    ),
-    'dlts_thumbnails' => array(
-      'template' => 'templates/dlts_thumbnails',
-      'variables' => NULL,
     ),
     'dlts_control_panel' => array(
       'template' => 'templates/dlts_control_panel',
@@ -20,41 +16,13 @@ function dlts_map_theme($existing, $type, $theme, $path) {
 /** Not meant to be pretty. We know what we want we get it. */
 function dlts_map_js_alter(&$javascript) {
 
-  $exclude = array();
-
-  $site_path = str_replace('themes/dlts_map', '', drupal_get_path('theme', 'dlts_map'));
-
-  $settings = drupal_array_merge_deep_array($javascript['settings']['data']);
-
-  if (!user_access('access administration pages')) {
-
-    $exclude = array(
-
-      // inline
-      'settings' => FALSE,
-
-      // Core
-
-      'misc/drupal.js' => FALSE,
-      'misc/jquery.js' => FALSE,
-      'misc/jquery.once.js' => FALSE,
-      'misc/form.js' => FALSE,
-      'misc/collapse.js' => FALSE,
-      'misc/jquery.cookie.js' => FALSE,
-      'modules/contextual/contextual.js' => FALSE,
-      'modules/toolbar/toolbar.js' => FALSE,
-
-      // Contrib
-
-      $site_path . 'modules/views/js/views-contextual.js' => FALSE,
-      $site_path . 'modules/field_group/field_group.js' => FALSE,
-
-    );
-  }
+  $settings = drupal_array_merge_deep_array ( $javascript['settings']['data'] ) ;
+  
+  $data = 'var Y = YUI().use(function (Y) { Y.namespace("DLTS"); Y.DLTS.settings = ' . drupal_json_encode ( $settings ) .' });' ;
 
   // start looking for a better solution
-  if ( isset( $settings ) ) {
-    $javascript['init'] = array(
+  if ( isset ( $settings ) ) {
+    $javascript['init'] = array (
       'group' => JS_THEME,
       'type' => 'inline',
       'every_page' => '',
@@ -64,71 +32,8 @@ function dlts_map_js_alter(&$javascript) {
       'defer' => FALSE,
       'preprocess' => 1,
       'version' => '',
-      'data' => 'var Y = YUI().use(function (Y) { Y.namespace("DLTS"); Y.DLTS.settings = ' . drupal_json_encode($settings) .' });'
-    );
-  }
-
-  $javascript = array_diff_key($javascript, $exclude);
-
-}
-
-function dlts_book_css_alter(&$css) {
-
-  if (!user_access('access administration pages')) {
-
-  $site_path = str_replace('themes/dlts_book', '', drupal_get_path('theme', 'dlts_book'));
-
-  $exclude = array(
-    // Core
-
-    'misc/vertical-tabs.css' => FALSE,
-    'modules/aggregator/aggregator.css' => FALSE,
-    'modules/block/block.css' => FALSE,
-    'modules/book/book.css' => FALSE,
-    'modules/comment/comment.css' => FALSE,
-    'modules/dblog/dblog.css' => FALSE,
-    'modules/file/file.css' => FALSE,
-    'modules/filter/filter.css' => FALSE,
-    'modules/forum/forum.css' => FALSE,
-    'modules/help/help.css' => FALSE,
-    'modules/menu/menu.css' => FALSE,
-    'modules/node/node.css' => FALSE,
-    'modules/openid/openid.css' => FALSE,
-    'modules/poll/poll.css' => FALSE,
-    'modules/profile/profile.css' => FALSE,
-    'modules/search/search.css' => FALSE,
-    'modules/statistics/statistics.css' => FALSE,
-    'modules/syslog/syslog.css' => FALSE,
-    'modules/system/admin.css' => FALSE,
-    'modules/system/maintenance.css' => FALSE,
-    'modules/system/system.css' => FALSE,
-    'modules/system/system.admin.css' => FALSE,
-    'modules/system/system.base.css' => FALSE,
-    'modules/system/system.maintenance.css' => FALSE,
-    'modules/system/system.menus.css' => FALSE,
-    'modules/system/system.messages.css' => FALSE,
-    'modules/system/system.theme.css' => FALSE,
-    'modules/taxonomy/taxonomy.css' => FALSE,
-    'modules/tracker/tracker.css' => FALSE,
-    'modules/update/update.css' => FALSE,
-    'modules/user/user.css' => FALSE,
-    'modules/field/theme/field.css' => FALSE,
-
-    // Admin CSS
-
-    'modules/contextual/contextual.css' => FALSE,
-    'modules/shortcut/shortcut.css' => FALSE,
-    'modules/toolbar/toolbar.css' => FALSE,
-
-    // Contrib
-
-    $site_path . 'modules/views/css/views.css' => FALSE,
-    $site_path . 'modules/ctools/css/ctools.css' => FALSE,
-    $site_path . 'modules/field_group/field_group.css' => FALSE,
-    $site_path . 'modules/date/date_api/date.css' => FALSE,
-  );
-
-  $css = array_diff_key($css, $exclude);
+      'data' => $data,
+    ) ;
   }
 
 }
@@ -137,7 +42,7 @@ function dlts_book_css_alter(&$css) {
  * Add non JavaScript tags to document
  * See: http://api.drupal.org/api/drupal/includes%21theme.inc/function/template_preprocess_html/7
  */
-function dlts_map_process_html(&$vars) {
+function dlts_map_process_html ( &$vars ) {
   if ( dlts_utilities_is_pjax() ) {
     $vars['theme_hook_suggestions'][] = 'html__pjax';
   }
@@ -253,32 +158,4 @@ function _dlts_map_navbar_item($variables = array()) {
 
   return '<li class="navbar-item">'. l('<span>' . $variables['title'] . '</span>', $variables['path'], $parts) . '</li>';
 
-}
-
-/**
- * Remove unnecessary white-space to improve DOM performance.
- * See: http://api.drupal.org/api/drupal/includes--theme.inc/function/theme_html_tag/7
- */
-function dlts_map_html_tag($variables) {
-
-  $element = $variables['element'];
-
-  $attributes = isset($element['#attributes']) ? drupal_attributes($element['#attributes']) : NULL;
-
-  if (!isset($element['#value'])) {
-    return '<' . $element['#tag'] . $attributes . ' />';
-  }
-
-  else {
-    $output = '<' . $element['#tag'] . $attributes . '>';
-    if (isset($element['#value_prefix'])) {
-      $output .= $element['#value_prefix'];
-    }
-    $output .= $element['#value'];
-    if (isset($element['#value_suffix'])) {
-      $output .= $element['#value_suffix'];
-    }
-    $output .= '</' . $element['#tag'] . '>';
-    return $output;
-  }
 }

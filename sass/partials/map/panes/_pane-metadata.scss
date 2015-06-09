@@ -108,8 +108,10 @@
     margin-left: 0 !important;
     margin-right: 0 !important;  
   }
- .pane.display .paging.previous {
-    left: -20px;
+ .pane.display { 
+   .paging.previous {
+      left: -20px;
+    }
   }
 }
 

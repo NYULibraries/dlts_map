@@ -1,22 +1,33 @@
-.pane {
-  &.load {
-    position: fixed; 
-    text-align: center;
+.openlayers-loading {
+  .load {
+    display: block;
+    visibility: visible;
+    position: relative;
     top: 50%;
     left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;    
+    text-align: center;
     height: $loading-segments-height + 20px;
     width:$loading-segments-total-width;
-    p {
-      color: $loading-animation-start-color;
-      @include bv-text-shadow(icon-embossed-text-shadow);
-    }
-  }  
-  .loading {
     .dlts_image_map {
       display: none;
       visibility: hidden;
     }      
-  }  
+  }
+}
+
+.pane {
+  &.load {
+    display: node;
+    visibility: hidden;
+    height: 0;
+    width:0;
+    p {
+      color: $loading-animation-start-color;
+      @include bv-text-shadow(icon-embossed-text-shadow);
+    }
+  }
 }
 
 // Animation originally generated at http://cssload.net/en/
