@@ -2,184 +2,180 @@ $break-small: 600px;
 $break-medium: 700px;
 $break-large: 1200px;
 
-.pane {
-  &.navbar {
-    width: 100%;
-    
-    .navbar-left, 
-    .navbar-middle, 
-    .navbar-right,
-    .navbar-arrows, 
-    .navbar-fullscreen {
-      width: auto;
-      overflow: hidden;
-      height: 46px;
-    }
-    
-    .navbar-left, 
-    .navbar-middle, 
-    .navbar-arrows {
-      padding-right: 7%;
-      float: left;
-    }
-    
-    .navbar-fullscreen {
-      float: right;
-      .navbar-item {
-        float: right;
-        margin: 0 0.5em 0 0;
-      }  
-    }
+.pane.navbar#navbar {
+  width: 100%;
+}
 
-    .navbar-item {
-      min-width: 50px;
-      display: block;
-      float: left;
-      margin: 0 0 0 .5em;
-      font-size: 2.3em;
-  
-      a, 
-      span,
-      .olControlDLTSZoomInItemInactive,
-      .olControlDLTSZoomOutItemInactive {
-        display: block;
-        margin: 0 auto;
-        width: 44px;
-        height: 44px;
-        color: $navbar-icon-color;
-        text-decoration: none;
-        @include bv-text-shadow(icon-embossed-text-shadow);
-        opacity: $normal-opacity;
-        border: 1px $navbar-border-color solid;
-        @include border-radius(10px);
-        @include bv-box-shadow($navbar-no-box-shadow);
-        @include transition-property((border, box-shadow));
-        @include transition-duration(300ms);
-        @include transition-timing-function(ease-in);
-        &:focus, 
-        &:visited {
-          text-decoration: none;
-          color: $navbar-icon-color;
-          opacity: $normal-opacity;
-        }
-        &:hover {
-          border: 1px #999 solid;
-          opacity: $active-opacity;
-          cursor: pointer;
-          @include bv-box-shadow($navbar-box-shadow);
-          text-decoration: none;
-          color: $navbar-on-color;
-        }
-        &.on {
-          border: 1px #999 solid;
-          opacity: $active-opacity;
-          cursor: pointer;
-          @include bv-box-shadow($navbar-box-shadow-on);
-          color: $navbar-on-color;
-        }
-        &:before {
-          @include bv-font-faced($icon-font-name);
-          margin: .2em;
-          line-height: 1.4em;
-          font-style: normal;
-          font-weight: normal;
-          speak: none;
-          -webkit-font-smoothing: antialiased;
-        }
-      }
-    
-      .inactive, 
-      .zoom_in_max, 
-      .zoom_out_max {
-        opacity: $dimmed-opacity;
-        border: 0px #999 solid !important;
-        @include box-shadow(none !important);
-        cursor: default !important;
-        &:hover {
-          opacity: $dimmed-opacity !important;
-        }
-      }
-    
-      a {
-        span {
-            @include hide-text;
-            display: none;
-        }
-      }
-    
-      .metadata {
-        &:before {
-            content: "\e016";
-        }
-      }
-    
-      .fullscreen {
-        &:before {
-            content: "\e006";
-        }
-        &.on:before {
-            content: "\e005";
-        }
-      }
+.navbar-left, .navbar-middle, .navbar-right, .navbar-arrows, .navbar-fullscreen {
+  width: auto;
+  overflow: hidden;
+  height: 46px;
+}
 
-      .annotations {
-        &:before {
-            content: "\e004";
-        }
-      }
-    
-      .search {
-        &:before {
-            content: "\e003";
-        }
-      }
-    
-      .olControlDLTSZoomInItemInactive {
-        &:before {
-          content: "\e00b";
-        }
-      }
-    
-      .olControlDLTSZoomOutItemInactive {
-        &:before {
-            content: "\e00c";
-        }
-      }
+.navbar-left, .navbar-middle, .navbar-arrows {
+  padding-right: 7%;
+  float: left;
+}
 
-      /** multivol */
-      .button {
-        &.multibook {
-          display: none;
-        }
-      }
+.navbar-fullscreen {
+  float: right;
+}
 
+.navbar-fullscreen .navbar-item {
+  float: right;
+  margin: 0 0.5em 0 0;
+}
+
+.navbar-item {
+  min-width: 50px;
+  display: block;
+  float: left;
+  margin: 0 0 0 .5em;
+  font-size: 2.3em;
+  a,
+  a.active,
+  span,
+  .olControlDLTSZoomInItemInactive,
+  .olControlDLTSZoomOutItemInactive {
+    display: block;
+    margin: 0 auto;
+    width: 44px;
+    height: 44px;
+    color: $navbar-icon-color;
+    text-decoration: none;
+    @include bv-text-shadow(icon-embossed-text-shadow);
+    opacity: $normal-opacity;
+    @include border-radius(10px);
+    @include bv-box-shadow($navbar-no-box-shadow);
+    @include transition-property((border, box-shadow));
+    @include transition-duration(100ms);
+    @include transition-timing-function(ease-in);
+    &:focus, &:visited {
+      text-decoration: none;
+      color: $navbar-icon-color;
+      opacity: $normal-opacity;
+      box-shadow: initial;
+      transition-property: initial;
+      transition-duration: initial;
+      transition-timing-function: initial;
     }
+    &:hover {
+      opacity: $active-opacity;
+      cursor: pointer;
+      @include bv-box-shadow($navbar-box-shadow);
+      text-decoration: none;
+      color: $navbar-on-color;
+    }
+    &.on {
+      border: none;
+      opacity: $active-opacity;
+      cursor: pointer;
+      @include bv-box-shadow($navbar-box-shadow-on);
+      color: $navbar-on-color;
+    }
+    &:before {
+      @include bv-font-faced($icon-font-name);
+      margin: .2em;
+      line-height: 1.4em;
+      font-style: normal;
+      font-weight: normal;
+      speak: none;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+  .inactive, .zoom_in_max, .zoom_out_max {
+    opacity: $dimmed-opacity;
+    @include box-shadow(none !important);
+    cursor: default !important;
+    &:hover {
+      opacity: $dimmed-opacity !important;
+    }
+  }
+  a {
+    span {
+      @include hide-text;
+      display: none;
+    }
+  }
+  .metadata {
+    &:before {
+      content: "\e016";
+    }
+  }
+  .fullscreen {
+    &:before {
+      content: "\e006";
+    }
+    &.on:before {
+      content: "\e005";
+    }
+  }
+  .page-double {
+    width: 62px !important;
+    &:before {
+      content: "\e00a";
+    }
+  }
+  .page-single {
+    &:before {
+      content: "\e009";
+    }
+  }
+  .thumbnails {
+    &:before {
+      content: "\e007";
+    }
+  }
+  .previous {
+    &:before {
+      content: "\e013";
+    }
+  }
+  .next {
+    &:before {
+      content: "\e012";
+    }
+  }
+  .annotations {
+    &:before {
+      content: "\e004";
+    }
+  }
+  .search {
+    &:before {
+      content: "\e003";
+    }
+  }
+  .olControlDLTSZoomInItemInactive {
+    &:before {
+      content: "\e00b";
+    }
+  }
+  .olControlDLTSZoomOutItemInactive {
+    &:before {
+      content: "\e00c";
+    }
+  }
+  // multivol
+  .button.multibook {
+    display: none;
   }
 }
 
 @media screen and (max-width: $break-medium) {
-
-  .navbar-left, 
-  .navbar-middle, 
-  .navbar-arrows {
+  .navbar-left, .navbar-middle, .navbar-arrows {
     padding: 0;
   }
-  
-  .navbar-item {
+  .navbar-fullscreen .navbar-item, .navbar-item {
     margin: 0 .2em;
   }
-
 }
 
 @media screen and (max-width: $break-small) {
- 
-  .navbar-item {
+  .navbar-fullscreen .navbar-item, .navbar-item {
     margin: 0 .2em;
   }
-  
-  .navbar-middle, 
-  .navbar-arrows {
+  .navbar-middle, .navbar-arrows {
     display: none;
   }
-
 }
