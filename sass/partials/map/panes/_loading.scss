@@ -1,4 +1,5 @@
-.openlayers-loading {
+body.openlayers-loading {
+  background-color: fuchsia;
   .load {
     display: block;
     visibility: visible;
