@@ -75,7 +75,7 @@ function dlts_map_preprocess_node(&$vars) {
     array(
       'title' => t('Metadata'),
       'path' => 'node/' . $node->nid,
-      'attributes' => array('data-title' => t('Metadata'), 'title' => t('Show/hide metadata'), 'class' => array('button', 'metadata', 'on'), 'id' => array('button-metadata')),
+      'attributes' => array('data-title' => t('Metadata'), 'title' => t('Show/hide metadata'), 'class' => array('button', 'metadata'), 'id' => array('button-metadata')),
       'fragment' => 'metadata',
     )
   );
@@ -93,7 +93,7 @@ function dlts_map_preprocess_node(&$vars) {
   /** Zoom in and out buttons */
   $vars['control_panel'] = theme('dlts_control_panel');
 
-  $vars['pane_metadata_hidden'] = FALSE;
+  $vars['pane_metadata_hidden'] = TRUE;
 
   $js_data = array(
     'map' => array(

@@ -1,25 +1,26 @@
 YUI().use(
   'node', 'event', 'event-custom', 'gallery-soon',
-  function ( Y ) {
-  
+  function(Y) {
+
     'use strict';
 
     var pane_pagemeta = Y.one('.pagemeta');
-    
+
     var pane_top = Y.one('.top');
 
     /** callbacks */
     var resizePageMeta;
-    
+
     var on_button_click;
-    
+
     /** add view port information to global setting */
     var viewport = Y.DOM.viewportRegion();
 
-    function resizePageMeta () {
+    function resizePageMeta() {
 
       /** definition list start */
       var viewportHeight = this.get('winHeight'),
+        viewportWidth = this.get('winWidth'),
         adminBarHeight = 0,
         topHeight = Y.one('.top').get('offsetHeight'),
         navbarHeight = Y.one('#navbar').get('offsetHeight'),
@@ -35,11 +36,24 @@ YUI().use(
 
       sidebarHeight = viewportHeight - (adminBarHeight + topHeight + navbarHeight + pageHeight);
 
-      Y.one('#pagemeta').setStyles({ 'height': sidebarHeight });
+      Y.one('#pagemeta').setStyles({
+        'height': sidebarHeight
+      });
+      // responsive behavior
+      if (viewportWidth > 800) {
+
+        Y.fire('button:button-metadata:on', Y.one('#pagemeta'));
+        Y.one('#button-metadata').addClass('on');
+      } else {
+
+        Y.fire('button:button-metadata:off', Y.one('#pagemeta'));
+        Y.one('#button-metadata').removeClass('on');
+      }
+
 
     }
 
-    function on_button_click ( e ) {
+    function on_button_click(e) {
 
       e.preventDefault();
 
@@ -97,6 +111,8 @@ YUI().use(
     /** events listeners */
     Y.on('contentready', resizePageMeta, '#pagemeta');
 
+
+
     Y.on('windowresize', resizePageMeta, '#pagemeta');
 
     Y.one('.page').delegate('click', on_button_click, 'a.button');
@@ -107,6 +123,7 @@ YUI().use(
     }, pane_pagemeta);
 
     Y.on('button:button-metadata:off', function(e) {
+      Y.log("button it off " + this);
       this.addClass('hidden');
       this.ancestor('.pane-body').addClass('pagemeta-hidden');
     }, pane_pagemeta);
@@ -128,15 +145,15 @@ YUI().use(
       top: pane_top,
       button: Y.one('a.fullscreen')
     });
-    
-    function openLayersTilesLoading ( ) {
-      
-      if ( Y.one('body').hasClass( 'openlayers-loading' ) ) Y.later( 500, Y.one('.pane.load'), openLayersTilesLoading );
-      
+
+    function openLayersTilesLoading() {
+
+      if (Y.one('body').hasClass('openlayers-loading')) Y.later(500, Y.one('.pane.load'), openLayersTilesLoading);
+
       else Y.one('.pane.load').hide();
-      
+
     }
 
     openLayersTilesLoading();
 
-});
+  });
