@@ -75,7 +75,7 @@ function dlts_map_preprocess_node(&$vars) {
     array(
       'title' => t('Metadata'),
       'path' => 'node/' . $node->nid,
-      'attributes' => array('data-title' => t('Metadata'), 'title' => t('Show/hide metadata'), 'class' => array('button', 'metadata', 'on'), 'id' => array('button-metadata')),
+      'attributes' => array('data-title' => t('Metadata'), 'title' => t('Show/hide metadata'), 'class' => array('button', 'metadata'), 'id' => array('button-metadata')),
       'fragment' => 'metadata',
     )
   );
@@ -93,7 +93,7 @@ function dlts_map_preprocess_node(&$vars) {
   /** Zoom in and out buttons */
   $vars['control_panel'] = theme('dlts_control_panel');
 
-  $vars['pane_metadata_hidden'] = FALSE;
+  $vars['pane_metadata_hidden'] = TRUE;
 
   $js_data = array(
     'map' => array(
@@ -112,6 +112,59 @@ function dlts_map_preprocess_node(&$vars) {
       
   drupal_add_js($js_data, 'setting');
 }
+
+
+function dlts_map_preprocess_field(&$vars) {
+
+  $language = 'en';
+
+  $query_parameters = drupal_get_query_parameters();
+
+  if (isset($query_parameters['lang'])) {
+    $language = filter_xss($query_parameters['lang']);
+  }
+
+  // Sadly, translations for field labels was removed from Drupal 7.1, even
+  // though the string translations are stored in the database, Drupal core
+  // does not render them translated. Thus, we are forced to either install
+  // i18n_fields module, or the less performance intensive solution: pass the
+  // labels through the t() function in a preprocess function.
+  //
+  // See http://drupal.org/node/1169798, http://drupal.org/node/1157426,
+  // and http://drupal.org/node/1157512 for more information.
+  if (!empty($vars['label'])) {
+    $vars['label'] = locale($vars['label'], $vars['element']['#field_name'] . ':' . $vars['element']['#bundle'] . ':label', $language);
+  }
+
+  if ($vars['element']['#field_name'] == 'field_pdf_file') {
+    $vars['label'] = t('PDF');
+    foreach ($vars['items'] as $key => $value) {
+      if (isset( $value['#markup'])) {
+        preg_match('/\/(.*)\/(.*){1}_(.*).pdf{1}/', $value['#markup'], $matches);
+        if (isset($matches) && isset( $matches[3])) {
+      if ($matches[3] == 'hi') {
+        $pdf_link_text = t('High resolution');
+          }
+          else {
+            $pdf_link_text = t('Low resolution');
+          }
+
+          $vars['items'][$key]['#markup'] = '<span class="field-item pdf-'. $matches[3] .'">' . l( $pdf_link_text, $value['#markup'], array('attributes' => array('target' => '_blank'))) . '</span>';
+
+        }
+      }
+    }
+  }
+
+  if ($vars['element']['#field_name'] == 'field_language_code') {
+    // Run the language code through dlts_book_language() to get a human readable language type from IA the language code
+    // Label is changed in field--field-language-code--dlts-book.tpl.php
+    $vars['items']['0']['#markup'] = dlts_book_language($vars['items']['0']['#markup'] );
+  }
+
+}
+
+
 
 function _dlts_map_navbar_item($variables = array()) {
 

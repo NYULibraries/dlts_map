@@ -19,7 +19,7 @@
     </ul>
   </div>
   <div id="main" class="pane main">
-    <div id="pagemeta" class="pane pagemeta">
+    <div id="pagemeta" class="pane pagemeta hidden">
       <?php if (isset($metadata)) : print render($metadata); endif; ?>
     </div>
     <div id="display" class="pane display">
