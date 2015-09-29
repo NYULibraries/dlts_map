@@ -153,9 +153,9 @@ YUI().use(
       else Y.one('.pane.load').hide();
 
       /** OpenLayers.DLTS.pages[0].addControl( new OpenLayers.Control.OverviewMap( { maximized: true } ) ) ; */
-      
+
     }
 
     openLayersTilesLoading();
-
-  });
+    
+});
