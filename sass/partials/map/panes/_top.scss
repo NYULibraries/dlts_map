@@ -1,0 +1,30 @@
+.pane {
+  &.top {
+    
+    /**
+    &.hidden {
+      display: none;
+      visibility: hidden;
+    }
+    */
+    
+    .titlebar {
+      margin: 0;
+      padding: 0;
+      background-image: none;
+      background-color: darken($special-titlebar-color, 15%);
+      height: auto;
+      overflow: hidden;
+      .title {
+        @include bv-text-shadow(embossed-text-shadow-dark-background);
+        letter-spacing: .05em;
+        color: $titlebar-color;
+        line-height: 1.8em;
+        font-size: 1.6em;
+        margin-left: 12px;
+        margin-left: .6rem;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

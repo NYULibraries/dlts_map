@@ -1,0 +1,124 @@
+body {
+  &.pagemeta-hidden {
+    .pane {
+      .display {
+        a.previous {
+          left: -20px !important;
+        }
+        a.next {
+          right: -20px !important;
+        }
+      }
+    }  
+  }
+
+  .pane {
+    &.display {
+      background-color: $page-background;
+      margin-left: - $metadata-pane-width;
+      margin-right: - $option-pane-width;
+      width: 100%;
+      height: 100%;
+      display: inline;
+      float: left;
+      a.next {
+        right: -20px;
+      }
+      div {
+        margin: 0;
+        padding: 0;
+      }
+      .node.pjax {
+        width: 100%;
+        height: 100%;
+        .pjax.button {
+          &.toggle-page {
+            display: none;
+            visibility: hidden;   
+          }
+        }
+      }
+      .dlts_image_map {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .paging-control {
+        display: block;
+        margin: 0;
+        padding: 0;
+        float: left;
+        background-color: transparent;
+      }
+      .next-page-off, 
+      .previous-page-off {
+        margin-top: 35%;
+        display: block;
+        opacity: $dimmed-opacity;
+      }
+      .olMapViewport {
+        border-top: 1px solid rgba(0,0,0,.3);
+      }
+      a {
+        color: $paging-icon-color;
+        text-decoration: none;
+        @include bv-text-shadow(icon-embossed-text-shadow);
+        &:before {
+          @include bv-font-faced($icon-font-name);
+          line-height:1em;
+          font-style: normal;
+          font-weight: normal;
+          font-size:9em;
+          padding:0;
+          margin:0;
+          speak: none;
+          -webkit-font-smoothing: antialiased;
+        }
+        &.paging {
+          position: fixed;
+          display:inline;
+          margin:0;
+          opacity: $normal-opacity / 2; 
+          top: 40%;
+          z-index: 9999;
+          
+          &.previous {
+            left: $metadata-pane-width - 20;
+            text-decoration: none;
+            &:before {
+              content: "\e014";
+            }
+          }
+          
+          &.next {
+            &:before {
+              content: "\e002";
+            }
+          }
+          &.inactive {
+            display: none;
+            visibility: hidden;
+          }
+          &:hover {
+            opacity: $active-opacity;
+          }
+        }
+        span {
+          display: none;
+          visibility: hidden;          
+        }
+      }
+    }
+  }
+}
+
+.pane.main[dir="rtl"] .pane.display {
+  
+  .paging.next {
+    right: 220px;
+  }
+  
+  .paging.previous {
+    left: -20px;
+  }  
+}

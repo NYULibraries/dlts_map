@@ -1,0 +1,51 @@
+@include bv-font-face(
+  $icon-font-name, 
+  $icon-font-woff, 
+  $icon-font-ttf, 
+  $inline-fonts, 
+  $font-weight, 
+  $font-style, 
+  $icon-font-eot
+);
+
+html {
+  font-family: $book-fonts;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  body {
+    font-family: inherit;
+    overflow: inherit;
+    height: inherit;
+    width: inherit;
+    .page {
+      overflow: inherit;
+      height: inherit;
+      width: inherit;
+    }
+    .wrapper {
+      margin: 0 auto;
+      padding: 0;
+    }    
+    .footer {
+      margin-left: 10px;
+    }
+    .button {
+      &.link {
+        border: 1px solid #E9E9E9;
+        @include border-radius(3px);
+        @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+        @include text-shadow(1px 1px 0 #fff);
+        display: inline-block;
+        font-weight: bold;
+        padding: 4px 12px 3px;
+        text-align: center;
+        white-space: nowrap;
+        background: #EFEFEF;
+        background: -moz-linear-gradient(top,whiteSmoke 0,#EFEFEF 50%,#E5E5E5 51%,#DFDFDF 100%);
+        background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,whiteSmoke),color-stop(50%,#EFEFEF),color-stop(51%,#E5E5E5),color-stop(100%,#DFDFDF));
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='whiteSmoke',endColorstr='#DFDFDF',GradientType=0);
+      }
+    }
+  }
+}
