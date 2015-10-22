@@ -60,19 +60,24 @@
       }
     }
     .field-label-inline {
-      line-height: 1.5em;
+      /* Helvetica Neue has an alignment bug in OSX (bold and normal font weights are vertically misaligned) which can be circumvented by setting lineheight carefully 
+      http://attaboy.tumblr.com/post/17305088166/to-boldly-go-where-helvetica-neue-has-gone-before*/
+      line-height: 22px;
       word-wrap: break-word;
     }
     .field-label {
-      display: inline;
+      display: inline-block;
       white-space: nowrap;
     }
     .field-items {
-      display: inline;
+      display: inline-block;
       word-wrap: break-word;
+      line-height: 22px;
     }
     .field-item {
-      display: inline;
+      a {
+         line-height: 22px;
+      }
     }
     
     #node_map_metadata_group_descriptive_metadata .field-name-field-title {
@@ -90,9 +95,9 @@
         clear: left;
       }
       .field-item:first-child {
-        display: inline;
-        float: none;
-        clear: none;
+        // display: inline;
+        // float: none;
+        // clear: none;
       }
     }
     .field-type-link-field {
